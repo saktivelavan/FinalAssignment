@@ -10,7 +10,7 @@ public class GlobalFeedPg {
 	@FindBy (linkText = "Home")
 	WebElement homePgLink;
 	
-	@FindBy (linkText = "Global Feed")
+	@FindBy (xpath = "(//button[@class='nav-link '])")
 	WebElement glbFeedLink;
 	
 	@FindBy (xpath = "(//h1[contains(text(),'Sakti Article')])[1]")

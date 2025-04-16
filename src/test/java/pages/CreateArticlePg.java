@@ -29,6 +29,9 @@ public class CreateArticlePg {
 	@FindBy (xpath = "(//h1)")
 	WebElement createdArtTitle;
 	
+	@FindBy (linkText = "Edit Article")
+	WebElement editArticle;
+	
 	
 	public CreateArticlePg(WebDriver driver) {
 		PageFactory.initElements(driver,this);
@@ -58,13 +61,13 @@ public class CreateArticlePg {
 		publishBtn.click();
 	}
    
-//	public boolean isArticleAdded() {
-//		System.out.println(createdArtTitle.getText());
-//		if (createdArtTitle.getText().contains("article")) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
+	public boolean isArticleAdded() {
+	
+		if (editArticle.isDisplayed()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 //	
 	}

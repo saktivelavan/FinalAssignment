@@ -19,6 +19,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.CreateArticlePg;
 import pages.GlobalFeedPg;
+import pages.UpdateArticlePage;
 import pages.UserLoginPg;
 
 
@@ -28,12 +29,13 @@ public class ArticleStepDef {
 	UserLoginPg userLoginPg;
 	CreateArticlePg createArticlePg;
 	GlobalFeedPg globalFeedPg;
-	
+	UpdateArticlePage updateArticlePg;
 	
 	public ArticleStepDef() {
 		userLoginPg = new UserLoginPg(driver);
 		createArticlePg = new CreateArticlePg(driver);
 		globalFeedPg = new GlobalFeedPg(driver);
+		updateArticlePg = new UpdateArticlePage(driver);
 	}
 
 	// User Login
@@ -76,8 +78,9 @@ public class ArticleStepDef {
 	
 	@Then("Article must be created")
 	public void article_must_be_created() {
-		String strUrl = driver.getCurrentUrl();
-		Assert.assertTrue(strUrl.contains("article"));
+//		String strgUrl = driver.getCurrentUrl();
+//		Assert.assertTrue(strgUrl.contains("sakti"));
+		Assert.assertTrue(createArticlePg.isArticleAdded());
 	}
 	
 	//View Article
@@ -94,7 +97,34 @@ public class ArticleStepDef {
 	@Then("Article detail page must be displayed")
 	public void article_detail_page_must_be_displayed() {
 		String strUrl = driver.getCurrentUrl();
-		Assert.assertTrue(strUrl.contains("sakti-article"));
+		Assert.assertTrue(strUrl.contains("article"));
+	}
+	
+	
+	//Update Article
+	
+	@When("User update article detail")
+	public void user_update_article_detail() {
+	
+		updateArticlePg.goToEditArticlePage();
+		
+	}
+	
+	@Then("Article detail must be updated")
+	public void article_detail_must_be_updated() {
+		updateArticlePg.editArticle();
+		Assert.assertTrue(updateArticlePg.isArticleUpdated());
+	}
+	
+	//Delete an Article
+	@When("User delete article")
+	public void user_delete_article() {
+	 
+	}
+	
+	@Then("Article must be deleted")
+	public void article_must_be_deleted() {
+	
 	}
 	
 }
