@@ -4,13 +4,15 @@ package stepDefs;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import base.TestBase;
 import io.cucumber.datatable.DataTable;
@@ -26,6 +28,7 @@ import pages.UserLoginPg;
 
 public class ArticleStepDef {
 	WebDriver driver =TestBase.getDriver();
+	Actions actions = new Actions(driver);
 	UserLoginPg userLoginPg;
 	CreateArticlePg createArticlePg;
 	GlobalFeedPg globalFeedPg;
@@ -119,11 +122,16 @@ public class ArticleStepDef {
 	//Delete an Article
 	@When("User delete article")
 	public void user_delete_article() {
-	 
+		updateArticlePg.deleteArticle();
+		Alert confirm = driver.switchTo().alert();
+		SoftAssert softAssert = new SoftAssert();
+		   softAssert.assertEquals(confirm.getText(), "Want to delete the article?");
+		   confirm.accept();
 	}
 	
 	@Then("Article must be deleted")
 	public void article_must_be_deleted() {
+	Assert.assertTrue(updateArticlePg.isArticleDeleted());
 	
 	}
 	

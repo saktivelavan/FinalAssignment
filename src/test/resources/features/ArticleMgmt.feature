@@ -13,7 +13,7 @@ Scenario: Create new Article
 Given User should be on New Article Page
 When User enters Article details
  | title | Desc | Content | tag |
- |Sakti Article-19|test article|This is a Test Article|BDD,POM,article,test|
+ |Sakti Article-20|test article|This is a Test Article|BDD,POM,article,test|
 Then Article must be created
 
 
