@@ -6,18 +6,12 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 		
-		features = ".//src//test//resources//taggedFeatures//",
+		features = ".//src//test//resources//features//",
 		glue= {"stepDefs"},
 		monochrome=true,
-		//plugin = {"pretty"},
-		//tags = "@SmokeTest",
-//		tags = "@SmokeTest or @RegressionTest"
-//		tags = "@SmokeTest and @RegressionTest"
-//		tags = "not @SmokeTest and not @RegressionTest"
-//		tags = "@PhaseOne"
-		tags = "@PhaseOne and @SmokeTest"
-//		tags = "@PhaseOne and @SmokeTest  or @PhaseTwo and @SmokeTest"
-		
+		plugin = {"pretty",
+				"html:target/reports/HtmlReport.html"}
+				
 		)
 
 public class ArticleRunner extends AbstractTestNGCucumberTests{
